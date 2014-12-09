@@ -1,22 +1,11 @@
-FROM phusion/baseimage:0.9.13
+FROM createdigitalspb/docker-baseimage
 
 MAINTAINER Vladimir Shulyak <vladimir@shulyak.net>
-
-# ENVs
-ENV HOME /root
-
-# SSH
-RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
-WORKDIR /var/tmp
 
 
 # commons
 RUN add-apt-repository -y ppa:nginx/stable
-RUN apt-get update -qy && apt-get upgrade -y
+RUN apt-get update -qy
 RUN apt-get install -qy wget unzip software-properties-common php5-cli php5-fpm php5-mysql php5-gd php5-mcrypt php5-intl\
     nginx mysql-server-5.5 mysql-client-5.5 pwgen inotify-tools
 
